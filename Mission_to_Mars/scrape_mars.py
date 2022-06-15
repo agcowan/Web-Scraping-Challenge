@@ -28,8 +28,8 @@ def scrape_info():
     paragraph = article.find('div', class_='article_teaser_body').text
 
     # Visit Featured Space Image site https://spaceimages-mars.com
-    img_url = "https://spaceimages-mars.com/"
-    browser.visit(img_url)
+    url1 = "https://spaceimages-mars.com/"
+    browser.visit(url1)
 
     # Parser
     html = browser.html
@@ -40,14 +40,14 @@ def scrape_info():
 
     # Extract the URL from the header used for the Featured Image
     image = header.find('img',class_ = 'headerimage fade-in')
-    featured_image_url = img_url + image['src']
+    featured_image_url = url1 + image['src']
 
     # Visit Mars Facts site https://galaxyfacts-mars.com
-    facts_url = "https://galaxyfacts-mars.com/"
-    browser.visit(facts_url)
+    url2 = "https://galaxyfacts-mars.com/"
+    browser.visit(url2)
 
     # Use Pandas to scrape the planet profile table
-    table = pd.read_html(facts_url)
+    table = pd.read_html(url2)
 
     # Convert the scraped table to a DataFrame
     df = table[1]
@@ -59,8 +59,8 @@ def scrape_info():
     df.to_html('table.html')
 
     # Visit astrogeology site
-    hemi_url = "https://marshemispheres.com/"
-    browser.visit(hemi_url)
+    url3 = "https://marshemispheres.com/"
+    browser.visit(url3)
 
     # Empty list for the dictionaries
     hemisphere_image_urls = []
@@ -79,7 +79,7 @@ def scrape_info():
             link = each.get('href')
             if link not in links:
                 links.append(link)
-            browser.visit(hemi_url + link)
+            browser.visit(url3 + link)
             # Parser
             html2 = browser.html
             soup2 = BeautifulSoup(html2, 'html.parser')
@@ -91,8 +91,8 @@ def scrape_info():
             title = soup2.find('div', class_ = 'cover')
             name = title.h2.text
             # If image link not in the list, append
-            if hemi_url + href not in hemisphere_image_urls:
-                hemisphere_image_urls.append(hemi_url + href)
+            if url3 + href not in hemisphere_image_urls:
+                hemisphere_image_urls.append(url3 + href)
             # If title not in the list, append
             if name not in titles:
                 titles.append(name)
@@ -101,18 +101,15 @@ def scrape_info():
 
     browser.quit()
 
-    image_dict = {
+    mars_data = {
+        "image":featured_image_url,
+        "art_title":title,
+        "paragraph":paragraph,
         "title":title[0],"image_url":hemisphere_image_urls[0],
         "title":title[1],"image_url":hemisphere_image_urls[1],
         "title":title[2],"image_url":hemisphere_image_urls[2],
         "title":title[3],"image_url":hemisphere_image_urls[3],
+        "table":html_table
     }
 
-
-    mars_data = {
-        "image":featured_image_url,
-        "art_title":title,
-        "paragraph":paragraph
-    }
-
-    return mars_data, image_dict, html_table
+    return mars_data

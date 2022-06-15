@@ -18,13 +18,13 @@
     <div class="container-fluid">
         <div class="row">
             <h3>Latest Mars News</h3>
-            <h4>{{ space.mars_data.art_title }}</h4>
-            <p>{{ space.mars_data.paragraph}}</p>
+            <h4>{{ space.art_title }}</h4>
+            <p>{{ space.paragraph}}</p>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <h3>Featured Mars Image</h3>
-                <img src="{{ space.mars_data.image}}" alt="featured mars image">
+                <img src="{{ space.image}}" alt="featured mars image">
             </div>
             <div class="col-md-6">
                 {{ space.html_table }}
@@ -42,60 +42,37 @@
         <div class="row">
             <div class="col-3">
                 <div class="card">
-                    <img src="{{ space.image_dict[0].image_url }}" class="card-img-top">\
+                    <img src="{{ space.image_url[0] }}" class="card-img-top">\
                     <div class="card-body">
-                        <h5 class="card_title">{{ space.image_dict[0].title}}</h5>
+                        <h5 class="card_title">{{ space.title[0]}}</h5>
                     </div>
                 </div>
             </div>
             <div class="col-3">
                 <div class="card">
-                    <img src="{{ space.image_dict[1].image_url }}" class="card-img-top">\
+                    <img src="{{ space.image_url[1] }}" class="card-img-top">\
                     <div class="card-body">
-                        <h5 class="card_title">{{ space.image_dict[1].title}}</h5>
+                        <h5 class="card_title">{{ space.title[1]}}</h5>
                     </div>
                 </div>
             </div>
             <div class="col-3">
                 <div class="card">
-                    <img src="{{ space.image_dict[2].image_url }}" class="card-img-top">\
+                    <img src="{{ space.image_url[2] }}" class="card-img-top">\
                     <div class="card-body">
-                        <h5 class="card_title">{{ space.image_dict[2].title}}</h5>
+                        <h5 class="card_title">{{ space.title[2]}}</h5>
                     </div>
                 </div>
             </div>
             <div class="col-3">
                 <div class="card">
-                    <img src="{{ space.image_dict[3].image_url }}" class="card-img-top">\
+                    <img src="{{ space.image_url[3] }}" class="card-img-top">\
                     <div class="card-body">
-                        <h5 class="card_title">{{ space.image_dict[3].title}}</h5>
+                        <h5 class="card_title">{{ space.title[3]}}</h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Costa Rica Weather</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-
-<body>
-  <div class="container-fluid">
-    <img src="{{ vacation.sloth_img }}" alt="Sloth">
-    <h2>The typical weather in Costa Rica is:</h2>
-    <h3>Max Temp: {{ vacation.max_temp }}</h3>
-    <h3>Min Temp: {{ vacation.min_temp }}</h3>
-  </div>
-  </div>
-</body>
-
 </html>
